@@ -1,0 +1,6 @@
+pluginRepositories {
+  maven {
+    url '/Users/rob/.m2/repository'
+  }
+  gradlePluginPortal()
+}
