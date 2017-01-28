@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Baking a Blog</title>
+    <title>Publishing the Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -68,138 +68,138 @@
     <div class="container">
 	
 	<div class="page-header">
-		<h1>Baking a Blog</h1>
+		<h1>Publishing the Blog</h1>
 	</div>
 
-	<p><em>27 January 2017</em></p>
+	<p><em>28 January 2017</em></p>
 
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>I recently decided to set up a simple blog using some open source tooling to publish a static
-website to <a href="https://pages.github.com">GitHub Pages</a>. Given that I have a significant amount of experience with Java I
-settled on using <a href="https://gradle.org">Gradle</a>, <a href="http://jbake.org">JBake</a>, and <a href="http://asciidoctor.org">AsciiDoctor</a>. Here
-are the steps I followed to setup the blog.</p>
+<p>In my previous post I outlined the steps to create a simple blog using some open source tools. Now that the
+blog is ready it&#8217;s time to publish it to GitHub Pages so that it can be viewed from the web.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="installing_jbake">Installing JBake</h2>
+<h2 id="create_github_repository">Create GitHub Repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>I primarily use a MacBook Pro for development so I decided to install JBake using the
-<a href="http://brew.sh">HomeBrew</a> package manager.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>brew install jbake</pre>
-</div>
+<p>The first step in publishing your blog to GitHub is to setup a repository to hold the content.</p>
 </div>
 <div class="paragraph">
-<p>After installing JBake you can run the following command to confirm everything is working.</p>
+<p>Log in to GitHub, and from your home page click the "New repository" button on the right side of the screen under
+"Your repositories"</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>jbake -h</pre>
-</div>
+<div class="paragraph">
+<p>Next fill in the "Repository name" field with &lt;username&gt;.github.io. Replace &lt;username&gt; with your GitHub
+username and then click the "Create repository" button at the bottom of the page.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="setup_a_blog_project">Setup a Blog project</h2>
+<h2 id="clone_your_repository">Clone your repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>JBake has a built in example project that uses <a href="http://freemarker.org">FreeMarker</a> templates,
-<a href="http://getbootstrap.com">Bootstrap</a>, and AsciiDoc and HTML pages for content. The example project
-can be initialized via the following commands.</p>
+<p>Copy the URL to your new repository and then clone the repository to your local machine using the following command.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>mkdir my-blog-project
-cd my-blog-project
-jbake -i</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>JBake creates a simple project structure for the blog in which images, javascript, and css files reside
-under the assets directory, the blog postings reside under the content directory, and the templates
-directory contains the freemarker templates that control the layout of the site.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>my-blog-project
-├── assets
-│   ├── css
-│   │   ├── asciidoctor.css
-│   │   ├── base.css
-│   │   ├── bootstrap.min.css
-│   │   └── prettify.css
-│   ├── favicon.ico
-│   ├── fonts
-│   │   ├── glyphicons-halflings-regular.eot
-│   │   ├── glyphicons-halflings-regular.svg
-│   │   ├── glyphicons-halflings-regular.ttf
-│   │   └── glyphicons-halflings-regular.woff
-│   └── js
-│       ├── bootstrap.min.js
-│       ├── html5shiv.min.js
-│       ├── jquery-1.11.1.min.js
-│       └── prettify.js
-├── content
-│   ├── about.html
-│   └── blog
-│       └── 2013
-│           ├── first-post.html
-│           ├── fourth-post.adoc
-│           ├── second-post.md
-│           └── third-post.adoc
-├── jbake.properties
-└── templates
-    ├── archive.ftl
-    ├── feed.ftl
-    ├── footer.ftl
-    ├── header.ftl
-    ├── index.ftl
-    ├── menu.ftl
-    ├── page.ftl
-    ├── post.ftl
-    ├── sitemap.ftl
-    └── tags.ftl</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>8 directories, 29 files</pre>
+<pre>git clone &lt;url&gt;</pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="bake_the_blog">Bake the Blog</h2>
+<h2 id="configure_the_repository_to_serve_github_pages">Configure the repository to serve GitHub Pages</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It&#8217;s time to generate (or bake) your blog. Running the following command will result in JBake processing the files of
-your blog and generating static HTML files that can be viewed from a web browser.</p>
+<p>Browse to the new repository and click the "Settings" tab near the top of the screen. Scroll down to the section named
+"GitHub Pages". Under this section update the "Source" dropdown option from "None" to "master" and click "Save". This
+instructs GitHub to serve your blog from the master branch.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create_a_branch_for_your_blog_source">Create a branch for your blog source</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since GitHub Pages uses the master branch to serve the blog, we will setup a second branch called "bake" to hold the source files used
+to generate the blog.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>jbake -b</pre>
+<pre>cd &lt;username&gt;.github.io
+git branch bake
+git checkout bake</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It&#8217;s now time to preview your blog. JBake comes pre-built with an embedded <a href="https://eclipse.org/jetty/">Jetty Web Server</a>
-which can be used to serve your blog locally by running following command.</p>
+<p>Next copy the contents of your blog from the "my-blog-project" directory to the current directory and then delete the
+output directory as we do not want to store the generated site in our blog source branch.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>jbake -s</pre>
+<pre>cp -R /path/to/my-blog-project  .
+rm -rf output</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Once the Jetty Web Server is up and running, open a browser to <a href="http://localhost:8820" class="bare">http://localhost:8820</a> to preview your blog.</p>
+<p>Next create a file named ".gitignore" to let git know that we don&#8217;t want to store some files in the repository. The file
+should contain the following content.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>gradle
+gradlew
+gradlew.bat
+.gradle
+output/</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>In my next post, I&#8217;ll discuss how to publish the blog to GitHub Pages.</p>
+<p>Commit the source files for the initial blog site to your local repo and them push them to GitHub.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>git add .
+git commit -m "Initial blog source files"
+git push --set-upstream bake
+git push origin</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="publish_your_blog_to_github_pages">Publish your blog to GitHub pages</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The final step in publishing your blog is to generate the site and then push the generated site to the master branch on
+GitHub.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>jbake -b
+git checkout master
+cp -r output/* .
+rm -f output
+git add .
+git commit -m "Initial blog site"
+git push origin</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="view_your_blog">View your blog</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Your blog is now viewable on the world wide web and can be view from the following URL.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>http://&lt;username&gt;.github.io</pre>
+</div>
 </div>
 </div>
 </div></p>

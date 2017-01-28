@@ -6,9 +6,147 @@
     <atom:link href="http://blog.roberthafner.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Fri, 27 Jan 2017 21:17:32 -0500</pubDate>
-    <lastBuildDate>Fri, 27 Jan 2017 21:17:32 -0500</lastBuildDate>
+    <pubDate>Sat, 28 Jan 2017 10:28:26 -0500</pubDate>
+    <lastBuildDate>Sat, 28 Jan 2017 10:28:26 -0500</lastBuildDate>
 
+    <item>
+      <title>Publishing the Blog</title>
+      <link>http://blog.roberthafner.org/blog/2017/publishing-to-github.html</link>
+      <pubDate>Sat, 28 Jan 2017 00:00:00 -0500</pubDate>
+      <guid isPermaLink="false">blog/2017/publishing-to-github.html</guid>
+      	<description>
+	&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In my previous post I outlined the steps to create a simple blog using some open source tools. Now that the
+blog is ready it&amp;#8217;s time to publish it to GitHub Pages so that it can be viewed from the web.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;create_github_repository&quot;&gt;Create GitHub Repository&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The first step in publishing your blog to GitHub is to setup a repository to hold the content.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Log in to GitHub, and from your home page click the &quot;New repository&quot; button on the right side of the screen under
+&quot;Your repositories&quot;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Next fill in the &quot;Repository name&quot; field with &amp;lt;username&amp;gt;.github.io. Replace &amp;lt;username&amp;gt; with your GitHub
+username and then click the &quot;Create repository&quot; button at the bottom of the page.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;clone_your_repository&quot;&gt;Clone your repository&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Copy the URL to your new repository and then clone the repository to your local machine using the following command.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;git clone &amp;lt;url&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;configure_the_repository_to_serve_github_pages&quot;&gt;Configure the repository to serve GitHub Pages&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Browse to the new repository and click the &quot;Settings&quot; tab near the top of the screen. Scroll down to the section named
+&quot;GitHub Pages&quot;. Under this section update the &quot;Source&quot; dropdown option from &quot;None&quot; to &quot;master&quot; and click &quot;Save&quot;. This
+instructs GitHub to serve your blog from the master branch.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;create_a_branch_for_your_blog_source&quot;&gt;Create a branch for your blog source&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Since GitHub Pages uses the master branch to serve the blog, we will setup a second branch called &quot;bake&quot; to hold the source files used
+to generate the blog.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;cd &amp;lt;username&amp;gt;.github.io
+git branch bake
+git checkout bake&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Next copy the contents of your blog from the &quot;my-blog-project&quot; directory to the current directory and then delete the
+output directory as we do not want to store the generated site in our blog source branch.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;cp -R /path/to/my-blog-project  .
+rm -rf output&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Next create a file named &quot;.gitignore&quot; to let git know that we don&amp;#8217;t want to store some files in the repository. The file
+should contain the following content.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;gradle
+gradlew
+gradlew.bat
+.gradle
+output/&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Commit the source files for the initial blog site to your local repo and them push them to GitHub.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;git add .
+git commit -m &quot;Initial blog source files&quot;
+git push --set-upstream bake
+git push origin&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;publish_your_blog_to_github_pages&quot;&gt;Publish your blog to GitHub pages&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The final step in publishing your blog is to generate the site and then push the generated site to the master branch on
+GitHub.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;jbake -b
+git checkout master
+cp -r output/* .
+rm -f output
+git add .
+git commit -m &quot;Initial blog site&quot;
+git push origin&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;view_your_blog&quot;&gt;View your blog&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Your blog is now viewable on the world wide web and can be view from the following URL.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;http://&amp;lt;username&amp;gt;.github.io&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
     <item>
       <title>Baking a Blog</title>
       <link>http://blog.roberthafner.org/blog/2017/baking-a-blog.html</link>
@@ -138,10 +276,10 @@ which can be used to serve your blog locally by running following command.&lt;/p
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Once the Jetty Web Server is up running, open a browser to &lt;a href=&quot;http://localhost:8820&quot; class=&quot;bare&quot;&gt;http://localhost:8820&lt;/a&gt; to preview your blog.&lt;/p&gt;
+&lt;p&gt;Once the Jetty Web Server is up and running, open a browser to &lt;a href=&quot;http://localhost:8820&quot; class=&quot;bare&quot;&gt;http://localhost:8820&lt;/a&gt; to preview your blog.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;In my next post, I&amp;#8217;ll discuss how to customize the blog a bit as well as create a blog entry.&lt;/p&gt;
+&lt;p&gt;In my next post, I&amp;#8217;ll discuss how to publish the blog to GitHub Pages.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
