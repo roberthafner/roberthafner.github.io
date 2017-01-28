@@ -88,9 +88,9 @@ which can be used to serve your blog locally by running following command.
 
  jbake -s
 
-Once the Jetty Web Server is up running, open a browser to http://localhost:8820 to preview your blog.
+Once the Jetty Web Server is up and running, open a browser to http://localhost:8820 to preview your blog.
 
-In my next post, I'll discuss how to customize the blog a bit as well as create a blog entry.
+In my next post, I'll discuss how to publish the blog to GitHub Pages.
 
 
 

@@ -1,0 +1,84 @@
+= Publishing the Blog
+Robert Hafner
+2017-01-28
+:jbake-type: post
+:jbake-status: published
+:jbake-tags: blog, asciidoc
+:idprefix:
+
+In my previous post I outlined the steps to create a simple blog using some open source tools. Now that the
+blog is ready it's time to publish it to GitHub Pages so that it can be viewed from the web.
+
+== Create GitHub Repository
+The first step in publishing your blog to GitHub is to setup a repository to hold the content.
+
+Log in to GitHub, and from your home page click the "New repository" button on the right side of the screen under
+"Your repositories"
+
+Next fill in the "Repository name" field with <username>.github.io. Replace <username> with your GitHub
+username and then click the "Create repository" button at the bottom of the page.
+
+== Clone your repository
+Copy the URL to your new repository and then clone the repository to your local machine using the following command.
+
+ git clone <url>
+
+== Configure the repository to serve GitHub Pages
+Browse to the new repository and click the "Settings" tab near the top of the screen. Scroll down to the section named
+"GitHub Pages". Under this section update the "Source" dropdown option from "None" to "master" and click "Save". This
+instructs GitHub to serve your blog from the master branch.
+
+== Create a branch for your blog source
+Since GitHub Pages uses the master branch to serve the blog, we will setup a second branch called "bake" to hold the source files used
+to generate the blog.
+
+ cd <username>.github.io 
+ git branch bake
+ git checkout bake
+
+Next copy the contents of your blog from the "my-blog-project" directory to the current directory and then delete the
+output directory as we do not want to store the generated site in our blog source branch.
+
+ cp -R /path/to/my-blog-project  .
+ rm -rf output
+
+Next create a file named ".gitignore" to let git know that we don't want to store some files in the repository. The file
+should contain the following content.
+
+ gradle
+ gradlew
+ gradlew.bat
+ .gradle
+ output/
+
+Commit the source files for the initial blog site to your local repo and them push them to GitHub.
+
+ git add .
+ git commit -m "Initial blog source files"
+ git push --set-upstream bake
+ git push origin
+
+== Publish your blog to GitHub pages
+The final step in publishing your blog is to generate the site and then push the generated site to the master branch on
+GitHub.
+
+  jbake -b
+  git checkout master
+  cp -r output/* .
+  rm -f output
+  git add .
+  git commit -m "Initial blog site"
+  git push origin
+
+== View your blog
+Your blog is now viewable on the world wide web and can be view from the following URL.
+
+ http://<username>.github.io
+
+
+
+
+
+
+
+
