@@ -1,0 +1,16 @@
+title=About
+date=2017-01-26
+type=page
+status=published
+~~~~~~
+
+image:roberthafner.jpg[Robert Hafner Photo, role="left"] 
+
+Robert Hafner is a Principal Software Developer at SAS Institute working on workflow services within the
+http://www.sas.com/en_us/software/viya.html[SAS Viya platform]. He is a contributing member of the open source BPM
+project http://www.flowable.org[Flowable]. The opinions expressed here represent those of the author and do not reflect
+his employer in any regard.
+
+{zwsp} +
+{zwsp} +
+{zwsp} +

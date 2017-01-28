@@ -1,0 +1,99 @@
+= Baking a Blog
+Robert Hafner
+2017-01-27
+:jbake-type: post
+:jbake-status: published
+:jbake-tags: blog, asciidoc
+:idprefix:
+
+I recently decided to set up a simple blog using some open source tooling to publish a static
+website to https://pages.github.com[GitHub Pages]. Given that I have a significant amount of experience with Java I
+settled on using https://gradle.org[Gradle], http://jbake.org[JBake], and http://asciidoctor.org[AsciiDoctor]. Here
+are the steps I followed to setup the blog.
+
+
+== Installing JBake
+I primarily use a MacBook Pro for development so I decided to install JBake using the
+http://brew.sh[HomeBrew] package manager.
+
+ brew install jbake
+
+After installing JBake you can run the following command to confirm everything is working.
+
+ jbake -h
+
+== Setup a Blog project
+JBake has a built in example project that uses http://freemarker.org[FreeMarker] templates,
+http://getbootstrap.com[Bootstrap], and AsciiDoc and HTML pages for content. The example project
+can be initialized via the following commands.
+
+ mkdir my-blog-project
+ cd my-blog-project
+ jbake -i
+
+JBake creates a simple project structure for the blog in which images, javascript, and css files reside
+under the assets directory, the blog postings reside under the content directory, and the templates
+directory contains the freemarker templates that control the layout of the site.
+
+ my-blog-project
+ ├── assets
+ │   ├── css
+ │   │   ├── asciidoctor.css
+ │   │   ├── base.css
+ │   │   ├── bootstrap.min.css
+ │   │   └── prettify.css
+ │   ├── favicon.ico
+ │   ├── fonts
+ │   │   ├── glyphicons-halflings-regular.eot
+ │   │   ├── glyphicons-halflings-regular.svg
+ │   │   ├── glyphicons-halflings-regular.ttf
+ │   │   └── glyphicons-halflings-regular.woff
+ │   └── js
+ │       ├── bootstrap.min.js
+ │       ├── html5shiv.min.js
+ │       ├── jquery-1.11.1.min.js
+ │       └── prettify.js
+ ├── content
+ │   ├── about.html
+ │   └── blog
+ │       └── 2013
+ │           ├── first-post.html
+ │           ├── fourth-post.adoc
+ │           ├── second-post.md
+ │           └── third-post.adoc
+ ├── jbake.properties
+ └── templates
+     ├── archive.ftl
+     ├── feed.ftl
+     ├── footer.ftl
+     ├── header.ftl
+     ├── index.ftl
+     ├── menu.ftl
+     ├── page.ftl
+     ├── post.ftl
+     ├── sitemap.ftl
+     └── tags.ftl
+
+ 8 directories, 29 files
+
+
+== Bake the Blog
+It's time to generate (or bake) your blog. Running the following command will result in JBake processing the files of
+your blog and generating static HTML files that can be viewed from a web browser.
+
+ jbake -b
+
+It's now time to preview your blog. JBake comes pre-built with an embedded https://eclipse.org/jetty/[Jetty Web Server]
+which can be used to serve your blog locally by running following command.
+
+ jbake -s
+
+Once the Jetty Web Server is up running, open a browser to http://localhost:8820 to preview your blog.
+
+In my next post, I'll discuss how to customize the blog a bit as well as create a blog entry.
+
+
+
+
+
+

@@ -12,6 +12,7 @@ buildscript {
 }
 
 apply plugin: me.champeau.gradle.JBakePlugin
+apply plugin: 'idea'
 
 //plugins {
 //  id 'me.champeau.jbake' version '0.2'
